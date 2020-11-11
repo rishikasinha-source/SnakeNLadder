@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class SnakeNLadder {
 
+	private static final int WINPOINT = 0;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		SnakeNLadder s = new SnakeNLadder();
@@ -33,6 +34,8 @@ public class SnakeNLadder {
 			ladder.put(17,69);
 		}
 	}
+	private Map<Integer, Integer> snake;
+	private Map<Integer, Integer> ladder;
 	private void startGame() {
 		// TODO Auto-generated method stub
 		
@@ -61,7 +64,7 @@ public class SnakeNLadder {
 			
 			if(currentPlayer == -1)
 			{
-				player1 = calculatePlayerValue(player1,diceValue);
+				player1 = calculatePlayerValue1(player1,diceValue);
 				System.out.println("First Player :: " + player1);
 				System.out.println("Second Player :: " + player2);
 				System.out.println("------------------");
@@ -73,7 +76,7 @@ public class SnakeNLadder {
 			}
 			else
 			{
-				player2 = calculatePlayerValue(player2,diceValue);
+				player2 = calculatePlayerValue1(player2,diceValue);
 				System.out.println("First Player :: " + player1);
 				System.out.println("Second Player :: " + player2);
 				System.out.println("------------------");
@@ -89,6 +92,30 @@ public class SnakeNLadder {
 			
 			
 		}while("r".equals(str));
+		
+	}
+	public int calculatePlayerValue1(int player, int diceValue)
+	{
+		player = player + diceValue;
+		
+		if(player > WINPOINT)
+		{
+			player = player - diceValue;
+			return player;
+		}
+		
+		if(null!=snake.get(player))
+		{
+			System.out.println("swallowed by snake");
+			player= snake.get(player);
+		}
+		
+		if(null!=ladder.get(player))
+		{
+			System.out.println("climb up the ladder");
+			player= ladder.get(player);
+		}
+		return player;
 	}
 	private boolean isWin(int player1) {
 		// TODO Auto-generated method stub
