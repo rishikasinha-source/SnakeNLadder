@@ -117,10 +117,11 @@ public class SnakeNLadder {
 		}
 		return player;
 	}
-	private boolean isWin(int player1) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isWin(int player)
+	{
+		return WINPOINT == player;
 	}
+	
 	private int calculatePlayerValue(int player1, int diceValue) {
 		// TODO Auto-generated method stub
 		return 0;
